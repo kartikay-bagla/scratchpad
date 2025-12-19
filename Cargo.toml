@@ -1,0 +1,22 @@
+[package]
+name = "scratchpad"
+version = "1.0.0"
+edition = "2025"
+description = "A minimal floating scratchpad with autosave"
+license = "GPL-3.0"
+repository = "https://github.com/kartikay-bagla/scratchpad"
+authors = ["Kartikay Bagla"]
+
+[dependencies]
+eframe = "0.29"
+image = { version = "0.25", default-features = false, features = ["png"] }
+open = "5"
+dirs = "6"
+
+[package.metadata.bundle]
+name = "Scratchpad"
+identifier = "com.kartikay.scratchpad"
+icon = ["icon.png"]
+version = "1.0.0"
+copyright = "Copyright (c) 2025 Kartikay Bagla. GPL v3"
+short_description = "A minimal floating scratchpad with autosave"

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Scratchpad
+Comment=A minimal floating scratchpad with autosave
+Exec=~/.local/bin/scratchpad
+Icon=~/.local/bin/scratchpad-icon.png
+Terminal=false
+Categories=Utility;TextEditor;
+Keywords=notes;scratchpad;text;editor;
