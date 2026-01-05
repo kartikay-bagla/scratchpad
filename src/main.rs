@@ -370,10 +370,11 @@ impl eframe::App for ScratchpadApp {
         let mut reload_requested = false;
 
         ctx.input(|i| {
-            if i.modifiers.ctrl && i.key_pressed(egui::Key::S) {
+            // Use `command` so it maps to Ctrl on Windows/Linux and Cmd on macOS
+            if i.modifiers.command && i.key_pressed(egui::Key::S) {
                 save_requested = true;
             }
-            if i.modifiers.ctrl && i.key_pressed(egui::Key::R) {
+            if i.modifiers.command && i.key_pressed(egui::Key::R) {
                 reload_requested = true;
             }
         });
