@@ -61,6 +61,29 @@ cargo bundle --release
 cp -r target/release/bundle/osx/Scratchpad.app /Applications/
 ```
 
+#### Regenerating the app icon
+
+If you modify `icon.png`, you'll need to regenerate the `.icns` file for macOS:
+
+```bash
+# Create iconset with required sizes
+mkdir -p icon.iconset
+sips -z 16 16 icon.png --out icon.iconset/icon_16x16.png
+sips -z 32 32 icon.png --out icon.iconset/icon_16x16@2x.png
+sips -z 32 32 icon.png --out icon.iconset/icon_32x32.png
+sips -z 64 64 icon.png --out icon.iconset/icon_32x32@2x.png
+sips -z 128 128 icon.png --out icon.iconset/icon_128x128.png
+sips -z 256 256 icon.png --out icon.iconset/icon_128x128@2x.png
+sips -z 256 256 icon.png --out icon.iconset/icon_256x256.png
+sips -z 512 512 icon.png --out icon.iconset/icon_256x256@2x.png
+sips -z 512 512 icon.png --out icon.iconset/icon_512x512.png
+sips -z 1024 1024 icon.png --out icon.iconset/icon_512x512@2x.png
+
+# Convert to .icns
+iconutil -c icns icon.iconset -o icons/scratchpad.icns
+rm -rf icon.iconset
+```
+
 The app will appear in Launchpad and can be launched from Finder.
 
 **Note**: On first launch, macOS may show a security warning for unsigned apps. Right-click the app and select "Open" to bypass this.
@@ -88,7 +111,9 @@ The app will appear in your application menu/launcher.
 ```
 scratchpad/
 ├── Cargo.toml           # Dependencies and project metadata
-├── icon.png             # Application icon
+├── icon.png             # Application icon (source)
+├── icons/
+│   └── scratchpad.icns  # macOS app icon (generated from icon.png)
 ├── LICENSE              # GPL v3 license
 ├── README.md            # This file
 ├── scratchpad.desktop   # Desktop entry for Linux launchers
