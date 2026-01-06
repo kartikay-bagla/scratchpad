@@ -711,13 +711,17 @@ impl eframe::App for ScratchpadApp {
 
                 let response = ui
                     .allocate_new_ui(egui::UiBuilder::new().max_rect(padded_rect), |ui| {
-                        let text_edit = egui::TextEdit::multiline(&mut self.text_content)
-                            .desired_width(f32::INFINITY)
-                            .frame(false)
-                            .font(egui::FontId::monospace(14.0))
-                            .text_color(egui::Color32::WHITE);
+                        egui::ScrollArea::vertical()
+                            .show(ui, |ui| {
+                                let text_edit = egui::TextEdit::multiline(&mut self.text_content)
+                                    .desired_width(f32::INFINITY)
+                                    .frame(false)
+                                    .font(egui::FontId::monospace(14.0))
+                                    .text_color(egui::Color32::WHITE);
 
-                        ui.add_sized(ui.available_size(), text_edit)
+                                ui.add_sized(ui.available_size(), text_edit)
+                            })
+                            .inner
                     })
                     .inner;
 
